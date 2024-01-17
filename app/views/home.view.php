@@ -2,7 +2,7 @@
 
 <div class="navbar">
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="<?=ROOT?>/home">Home</a></li>
             <li><a href="<?=ROOT?>/signin">Signin</a></li>
             <li><a href="<?=ROOT?>/signup">Signup</a></li>
         </ul>
