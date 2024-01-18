@@ -1,7 +1,10 @@
 <?php
 
-Trait Controller {
-    public function view($name) {
+class Controller {
+    public function view($name, $data = []) {
+        if(!empty($data)) { 
+            extract($data);
+        }
         $filename = "../app/views/" . $name . ".view.php";
         if(file_exists($filename)) {
             require $filename;
