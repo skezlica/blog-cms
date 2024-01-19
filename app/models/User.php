@@ -8,7 +8,7 @@ class User extends Model {
         'password',
     ];
 
-    public function validate($data) {
+    public function validateSignup($data) {
         $this->errors = [];
 
         if(empty($data['email'])) {
@@ -19,6 +19,8 @@ class User extends Model {
 
         if(empty($data['password'])) {
             $this->errors['password'] = 'Password is required';
+        } else if (strlen($data['password']) < 6) {
+            $this->errors['password'] = 'Password must be 6 characters or longer';
         }
 
         if(empty($this->errors)) {

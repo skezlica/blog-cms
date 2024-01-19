@@ -6,7 +6,8 @@ class Signup extends Controller {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = new User;
         
-            if($user->validate($_POST)) {
+            if($user->validateSignup($_POST)) {
+                $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $user->insert($_POST);
                 redirect('signin');
             }

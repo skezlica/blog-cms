@@ -11,7 +11,7 @@ class Signin extends Controller {
             $arr['email'] = $_POST['email'];
             $row = $user->first($arr);
             if($row){
-                if($row->password === $_POST['password']) {
+                if(password_verify($_POST['password'], $row->password)) {
                     $_SESSION['user'] = $row;
                     redirect('home');
                 }
@@ -21,7 +21,6 @@ class Signin extends Controller {
             $data['errors'] = $user->errors;
         }
         
-
         $this->view('signin', $data);
     }
 }
