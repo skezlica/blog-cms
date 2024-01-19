@@ -7,7 +7,7 @@
 --------------------------------------------------
 1. Creating a database "bloog_cms_db"
 
-CREATE DATABASE IF NOT EXISTS calculator;
+CREATE DATABASE IF NOT EXISTS bloog_cms_db;
 --------------------------------------------------
 2. Using a database "bloog_cms_db"
 
@@ -25,8 +25,6 @@ CREATE TABLE IF NOT EXISTS users (
 2) In following path you need to create a file "config.php" with following code:
 
 --------------------------------------------------
-<?php
-
 if($_SERVER['SERVER_NAME'] == 'localhost') {
     define ("DBNAME", "blog_cms_db");
     define ("DBHOST", "your db host name"); 
@@ -45,4 +43,3 @@ if($_SERVER['SERVER_NAME'] == 'localhost') {
 define ("APP_NAME", "BLOG CMS");
 define ("DEBUG", true);
 --------------------------------------------------
-
