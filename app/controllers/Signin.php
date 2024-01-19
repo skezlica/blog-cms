@@ -8,6 +8,9 @@ class Signin extends Controller {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = new User;
             
+            $_POST['email'] = esc($_POST['email']);
+            $_POST['password'] = esc($_POST['password']);
+
             $arr['email'] = $_POST['email'];
             $row = $user->first($arr);
             if($row){

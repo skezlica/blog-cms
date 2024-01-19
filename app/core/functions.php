@@ -7,7 +7,10 @@ function show($stuff) {
 }
 
 function esc($str) {
-    return htmlspecialchars($str);
+    $str = trim($str);
+    $str = stripslashes($str);
+    $str = htmlspecialchars($str);
+    return $str;
 }
 
 function redirect($path) {
