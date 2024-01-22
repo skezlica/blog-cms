@@ -1,0 +1,71 @@
+.post {
+    background-color: #222725;
+    padding: 16px;
+    max-width: 1000px;
+    margin: 32px auto;
+    border-radius: 8px;
+    border: 1px solid #E4E6C3;
+}
+
+.post .form-element {
+    margin: 16px 0;
+}
+
+.post .form-element label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.post .form-element .form-fields {
+    background-color: rgba(228, 230, 195, 0.9);
+    border-color: #121113;
+    color: #121113;
+    border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+}
+
+.post .form-element button {
+    background-color: #899878;
+    border-color: #121113;
+    color: #121113;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: 0.3s;
+}
+
+.post .form-element button:hover {
+    background-color: #E4E6C3;
+}
+
+.post .user {
+    color: #899878;
+    font-size: 16px;
+}
+
+.post .category {
+    color: #899878;
+    font-size: 16px;
+}
+
+.post .content h2{
+    font-size: 28px;
+}
+
+.post .content p{
+    font-size: 24;
+    text-align: justify;
+}
+
+.post .comments {
+    background-color: #121113;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.post .comments .comment {
+    border-bottom: 1px solid #E4E6C3;
+}

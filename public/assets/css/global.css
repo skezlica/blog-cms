@@ -13,10 +13,11 @@ body {
 
 .alert {
     text-align: center;
-    background-color: #222725;
+    background-color: rgba(63, 0, 0, 0.4);
     color: #E4E6C3;
     padding: 16px;
     font-size: 16px;
+    border-radius: 8px;
 }
 
 h1 {
