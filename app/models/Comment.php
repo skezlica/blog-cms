@@ -7,4 +7,16 @@ class Comment extends Model {
         'comment',
     ];
 
+    public function validateComment($data) {
+        $this->errors = [];
+
+        if(empty($data['comment'])) {
+            $this->errors['comment'] = 'Comment is required';
+        }
+
+        if(empty($this->errors)) {
+            return true;
+        }
+        return false;
+    }
 }

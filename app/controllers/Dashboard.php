@@ -7,26 +7,26 @@ class Dashboard extends Controller {
         $post = new Post;
         $data['posts'] = $post->joinAll();
 
-        $category = new Category;
-        $data['categories'] = $category->findAll();
-
         $comment = new Comment;
         $data['comment'] = $comment->findAll();
 
-        show($data['comment']);
+        $_POST['user_id'] = $_SESSION['user']->id;
+        foreach($data['posts'] as $post) {
+            $_POST['post_id'] = $post->id;
+            show($_POST);
+        }
+
+        show($_POST);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST['title'] = esc($_POST['title']);
-            $_POST['content'] = esc($_POST['content']);
-            
-            $_POST['user_id'] = $_SESSION['user']->id;
+            $_POST['comment'] = esc($_POST['comment']);
 
-            if ($post->validatePost($_POST)) {
-                $post->insert($_POST);
+            if ($comment->validateComment($_POST)) {
+                $comment->insert($_POST);
                 redirect('dashboard');
             }
 
-            $data['errors'] = $post->errors;
+            $data['errors'] = $comment->errors;
         }
         
         if (!empty($_SESSION['user'])) {
