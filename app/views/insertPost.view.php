@@ -6,7 +6,7 @@
             <div class="alert">
                 <?= implode("<br>", $errors) ?>
             </div>
-        <?php endif; ?>
+    <?php endif; ?>
     <form method="POST">
         <div class="form-element">
             <label for="category_id">Category:</label>

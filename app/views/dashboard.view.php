@@ -24,11 +24,16 @@
                             </div>
                         <?php endif; ?>
                     <?php endforeach; ?>
+                    <?php if(!empty($errors)):?>
+                        <div class="alert">
+                            <?= implode("<br>", $errors) ?>
+                        </div>
+                    <?php endif; ?>
                     <form method="POST">
                         <div class="form-element">
                             <input type="hidden" name="post_id" value="<?= $post->id ?>">
                             <label for="comment">Comment:</label>
-                            <input class="form-fields" type="text" name="comment" id="comment">
+                            <input class="form-fields" type="text" name="comment" id="comment" required>
                         </div>
                         <div class="form-element">
                             <button type="submit">Comment</button>
