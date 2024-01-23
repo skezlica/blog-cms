@@ -97,4 +97,11 @@ class Model extends Database {
         ORDER BY posts.id DESC";
         return $this->query($query);
     }
+
+    public function joinCommentsUsers() {
+        $query = "SELECT comments.*, users.email FROM comments 
+        LEFT JOIN users ON comments.user_id = users.id
+        ORDER BY comments.id DESC";
+        return $this->query($query);
+    }
 }

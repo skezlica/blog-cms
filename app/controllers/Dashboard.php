@@ -8,18 +8,12 @@ class Dashboard extends Controller {
         $data['posts'] = $post->joinAll();
 
         $comment = new Comment;
-        $data['comment'] = $comment->findAll();
-
-        $_POST['user_id'] = $_SESSION['user']->id;
-        foreach($data['posts'] as $post) {
-            $_POST['post_id'] = $post->id;
-            show($_POST);
-        }
-
-        show($_POST);
-
+        $data['comments'] = $comment->joinCommentsUsers();
+        
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['comment'] = esc($_POST['comment']);
+            
+            $_POST['user_id'] = $_SESSION['user']->id;
 
             if ($comment->validateComment($_POST)) {
                 $comment->insert($_POST);

@@ -4,32 +4,39 @@
 <div class="add">
     <a href="<?=ROOT?>/insertPost">ADD NEW POST</a>
 </div>
-<?php if(!empty($data['posts'])): ?>
-   <?php foreach ($data['posts'] as $post): ?> 
-    <div class="post">
-        <div class="user"><p><?php echo $post->email; ?></p></div>
-        <div class="category"><p><?php echo $post->category_name; ?></p></div>
-        <div class="content">
-            <h2><?php echo $post->title; ?></h2>
-            <p><?php echo $post->content; ?></p>
-        </div>
-        <div class="comments">
-        <h2>Comments</h2>
-        <div class="comment">
-            <div class="comment">
-                <div class="user"><p></p></div>
-                <p></p>
+<?php if (!empty($data['posts'])): ?>
+    <?php foreach ($data['posts'] as $post): ?> 
+        <div class="post">
+            <div class="user"><p><?= $post->email; ?></p></div>
+            <div class="category"><p><?= $post->category_name; ?></p></div>
+            <div class="content">
+                <h2><?= $post->title; ?></h2>
+                <p><?= $post->content; ?></p>
             </div>
-            <form method="POST">
-                <div class="form-element">
-                    <label for="comment">Comment:</label>
-                    <input class="form-fields" type="text" name="comment" id="comment">
-                </div>
-                <div class="form-element">
-                    <button type="submit">Comment</button>
-                </div>
-            </form>
+            <div class="comments">
+                <h2>Comments</h2>
+                <?php if (!empty($data['comments'])): ?>
+                    <?php foreach ($data['comments'] as $comment): ?>
+                        <?php if ($comment->post_id == $post->id): ?>
+                            <div class="comment">
+                                <div class="user"><p><?= $comment->email ?></p></div>
+                                <p><?= $comment->comment ?></p>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <form method="POST">
+                        <div class="form-element">
+                            <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                            <label for="comment">Comment:</label>
+                            <input class="form-fields" type="text" name="comment" id="comment">
+                        </div>
+                        <div class="form-element">
+                            <button type="submit">Comment</button>
+                        </div>
+                    </form>
+                <?php endif; ?>
+            </div>
         </div>
-    </div>
-    </div>
-<?php endforeach; endif;?>
+    <?php endforeach; ?>
+<?php endif; ?>
+

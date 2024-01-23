@@ -5,6 +5,8 @@ class Comment extends Model {
     protected $table = 'comments';
     protected $allowedColumns = [
         'comment',
+        'user_id',
+        'post_id',
     ];
 
     public function validateComment($data) {
