@@ -89,4 +89,12 @@ class Model extends Database {
         $query = "delete from $this->table where $id_column = :$id_column";
         $this->query($query, $data);
     }
+
+    public function joinAll() {
+        $query = "SELECT posts.*, users.email, categories.category_name FROM posts 
+        LEFT JOIN users ON posts.user_id = users.id 
+        LEFT JOIN categories ON posts.category_id = categories.id
+        ORDER BY posts.id DESC";
+        return $this->query($query);
+    }
 }
