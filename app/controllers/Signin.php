@@ -24,6 +24,10 @@ class Signin extends Controller {
             $data['errors'] = $user->errors;
         }
         
-        $this->view('signin', $data);
+        if(!isset($_SESSION['user'])){    
+            $this->view('signin', $data);
+        } else {
+            redirect('home');
+        }
     }
 }

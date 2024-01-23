@@ -18,6 +18,10 @@ class Signup extends Controller {
             $data['errors'] = $user->errors;
         }
 
-        $this->view('signup', $data);
+        if(!isset($_SESSION['user'])){    
+            $this->view('signup', $data);
+        } else {
+            redirect('home');
+        }
     }
 }
