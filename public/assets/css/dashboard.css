@@ -29,12 +29,42 @@
 
 
 .post {
+    position: relative;
     background-color: #222725;
     padding: 16px;
     max-width: 1000px;
     margin: 32px auto;
     border-radius: 8px;
     border: 1px solid #E4E6C3;
+}
+
+.post .operations {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.only-comment {
+    display: flex;
+    justify-content: space-between;
+}
+
+.operationss-comments {
+    display: flex;
+}
+
+.operationss-comments .operations-option-comments a img{
+    width: 16px;
+    padding: 8px;
+}
+
+.post .operations .operations-option {
+    padding: 8px;
+}
+
+.post .operations .operations-option a img{
+    width: 24px;
+    display: block;
 }
 
 .post .form-element {
@@ -91,8 +121,8 @@
 }
 
 .post .comments {
-    background-color: #121113;
-    border-radius: 8px;
+    background-color: rgba(18, 17, 19, 0.7);
+    border-radius: 16px;
     padding: 16px;
 }
 

@@ -7,6 +7,18 @@
 <?php if (!empty($data['posts'])): ?>
     <?php foreach ($data['posts'] as $post): ?> 
         <div class="post">
+        <?php if ($post->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
+            <div class="operations">
+            <?php if ($_SESSION['user']->role_id != 2): ?>
+                <div class="operations-option">
+                    <a href=""><img src="<?=ROOT?>/assets/images/pencil.png" alt=""></a>
+                </div>
+            <?php endif; ?>
+                <div class="operations-option">
+                    <a href=""><img src="<?=ROOT?>/assets/images/bin.png" alt=""></a>
+                </div>
+            </div>
+        <?php endif; ?>
             <div class="user"><p><?= $post->email; ?></p></div>
             <div class="category"><p><?= $post->category_name; ?></p></div>
             <div class="content">
@@ -20,7 +32,21 @@
                         <?php if ($comment->post_id == $post->id): ?>
                             <div class="comment">
                                 <div class="user"><p><?= $comment->email ?></p></div>
-                                <p><?= $comment->comment ?></p>
+                                <div class="only-comment">
+                                    <p><?= $comment->comment ?></p>
+                                    <?php if ($comment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
+                                        <div class="operationss-comments">
+                                        <?php if ($_SESSION['user']->role_id != 2): ?>
+                                                <div class="operations-option-comments">
+                                                    <a href=""><img src="<?=ROOT?>/assets/images/pencil.png" alt=""></a>
+                                                </div>
+                                        <?php endif; ?>
+                                            <div class="operations-option-comments">
+                                                <a href=""><img src="<?=ROOT?>/assets/images/bin.png" alt=""></a>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         <?php endif; ?>
                     <?php endforeach; ?>
