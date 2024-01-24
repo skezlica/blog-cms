@@ -7,6 +7,7 @@
                 <?= implode("<br>", $errors) ?>
             </div>
     <?php endif; ?>
+
     <form method="POST">
         <div class="form-element">
             <label for="category_id">Category:</label>
@@ -21,10 +22,12 @@
             <label for="title">Title:</label>
             <input class="form-fields" type="text" name="title" id="title" required>
         </div>
+
         <div class="form-element">
             <label for="content">Content:</label>
             <textarea class="form-fields" name="content" cols="30" rows="10" required></textarea>
         </div>
+
         <div class="form-element">
             <button type="submit">Publish</button>
         </div>

@@ -38,33 +38,25 @@
     border: 1px solid #E4E6C3;
 }
 
-.post .operations {
+.operations {
     position: absolute;
     top: 16px;
     right: 16px;
 }
 
-.only-comment {
-    display: flex;
-    justify-content: space-between;
+.operations-option form .form-element button{
+    border: transparent;
+    background-color: transparent;
+    transition: 0.3s;
 }
 
-.operationss-comments {
-    display: flex;
+.operations-option form .form-element button:hover {
+    border: 1px solid #E4E6C3;
+    background-color: transparent;
 }
 
-.operationss-comments .operations-option-comments a img{
-    width: 16px;
-    padding: 8px;
-}
-
-.post .operations .operations-option {
-    padding: 8px;
-}
-
-.post .operations .operations-option a img{
+.operations-option form .form-element button img{
     width: 24px;
-    display: block;
 }
 
 .post .form-element {
@@ -110,6 +102,16 @@
     color: #899878;
     font-size: 16px;
 }
+
+.only-comment {
+    display: flex;
+    justify-content: space-between;
+}
+
+.operationss-comments {
+    display: flex;
+}
+
 
 .post .content h2{
     font-size: 28px;

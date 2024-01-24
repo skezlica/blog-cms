@@ -29,4 +29,32 @@ class Dashboard extends Controller {
             redirect('signin');
         }
     }
+
+    public function deletePost() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_id'])) {
+            $post = new Post;
+            $post_id = $_POST['post_id'];
+
+            $existingPost = $post->first(['id' => $post_id]);
+            if ($existingPost && ($existingPost->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2)) {
+                $post->delete($post_id);
+                redirect('dashboard');
+            }
+        }
+        redirect('dashboard');
+    }
+
+    public function deleteComment() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment_id'])) {
+            $comment = new Comment;
+            $commentId = $_POST['comment_id'];
+
+            $existingComment = $comment->first(['id' => $commentId]);
+            if ($existingComment && ($existingComment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2)) {
+                $comment->delete($commentId);
+                redirect('dashboard');
+            }
+        }
+        redirect('dashboard');
+    }
 }

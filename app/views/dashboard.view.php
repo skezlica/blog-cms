@@ -4,27 +4,46 @@
 <div class="add">
     <a href="<?=ROOT?>/insertPost">ADD NEW POST</a>
 </div>
+
 <?php if (!empty($data['posts'])): ?>
     <?php foreach ($data['posts'] as $post): ?> 
         <div class="post">
-        <?php if ($post->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
-            <div class="operations">
-            <?php if ($_SESSION['user']->role_id != 2): ?>
-                <div class="operations-option">
-                    <a href=""><img src="<?=ROOT?>/assets/images/pencil.png" alt=""></a>
+            <?php if ($post->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
+                <div class="operations">
+                    <?php if ($_SESSION['user']->role_id != 2): ?>
+                        <div class="operations-option">
+                            <form method="POST" action="<?= ROOT ?>/dashboard/deletePost">
+                                <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                                <div class="form-element">
+                                    <button type="submit">
+                                        <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="operations-option">
+                        <form method="POST" action="<?= ROOT ?>/dashboard/deletePost">
+                            <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                            <div class="form-element">
+                                <button type="submit">
+                                    <img src="<?= ROOT ?>/assets/images/bin.png" alt="">
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             <?php endif; ?>
-                <div class="operations-option">
-                    <a href=""><img src="<?=ROOT?>/assets/images/bin.png" alt=""></a>
-                </div>
-            </div>
-        <?php endif; ?>
+
             <div class="user"><p><?= $post->email; ?></p></div>
             <div class="category"><p><?= $post->category_name; ?></p></div>
+            
             <div class="content">
                 <h2><?= $post->title; ?></h2>
                 <p><?= $post->content; ?></p>
             </div>
+            
             <div class="comments">
                 <h2>Comments</h2>
                 <?php if (!empty($data['comments'])): ?>
@@ -36,13 +55,28 @@
                                     <p><?= $comment->comment ?></p>
                                     <?php if ($comment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
                                         <div class="operationss-comments">
-                                        <?php if ($_SESSION['user']->role_id != 2): ?>
-                                                <div class="operations-option-comments">
-                                                    <a href=""><img src="<?=ROOT?>/assets/images/pencil.png" alt=""></a>
-                                                </div>
-                                        <?php endif; ?>
-                                            <div class="operations-option-comments">
-                                                <a href=""><img src="<?=ROOT?>/assets/images/bin.png" alt=""></a>
+                                            <?php if ($_SESSION['user']->role_id != 2): ?>
+                                                    <div class="operations-option">
+                                                    <form method="POST" action="<?= ROOT ?>/dashboard/deletePost">
+                                                        <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                                                        <div class="form-element">
+                                                            <button type="submit">
+                                                                <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                            <?php endif; ?>
+
+                                            <div class="operations-option">
+                                                <form method="POST" action="<?= ROOT ?>/dashboard/deleteComment">
+                                                    <input type="hidden" name="comment_id" value="<?= $comment->id ?>">
+                                                    <div class="form-element">
+                                                        <button type="submit">
+                                                            <img src="<?= ROOT ?>/assets/images/bin.png" alt="">
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     <?php endif; ?>
@@ -50,18 +84,21 @@
                             </div>
                         <?php endif; ?>
                     <?php endforeach; ?>
+
                     <?php if(!empty($errors)):?>
                         <div class="alert">
                             <?= implode("<br>", $errors) ?>
                         </div>
                     <?php endif; ?>
                 <?php endif; ?>
+
                 <form method="POST">
                     <div class="form-element">
                         <input type="hidden" name="post_id" value="<?= $post->id ?>">
                         <label for="comment">Comment:</label>
                         <input class="form-fields" type="text" name="comment" id="comment" required>
                     </div>
+
                     <div class="form-element">
                         <button type="submit">Comment</button>
                     </div>
