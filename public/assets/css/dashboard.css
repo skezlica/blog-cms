@@ -55,9 +55,20 @@
     background-color: transparent;
 }
 
-.operations-option form .form-element button img{
+.operations-option form .form-element button img {
     width: 24px;
 }
+
+.operations-option form .form-element button {
+    border: transparent;
+    background-color: transparent;
+    transition: 0.3s;
+}
+
+.operations-option form .form-element .form-element-smaller button img {
+    width: 16px;
+}
+
 
 .post .form-element {
     margin: 16px 0;
@@ -106,6 +117,7 @@
 .only-comment {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .operationss-comments {

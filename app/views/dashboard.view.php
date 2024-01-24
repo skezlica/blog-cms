@@ -10,7 +10,7 @@
         <div class="post">
             <?php if ($post->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
                 <div class="operations">
-                    <?php if ($_SESSION['user']->role_id != 2): ?>
+                    <?php if ($_SESSION['user']->role_id != 2 || $post->user_id == $_SESSION['user']->id): ?>
                         <div class="operations-option">
                             <form method="POST" action="<?= ROOT ?>/dashboard/deletePost">
                                 <input type="hidden" name="post_id" value="<?= $post->id ?>">
@@ -55,14 +55,16 @@
                                     <p><?= $comment->comment ?></p>
                                     <?php if ($comment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
                                         <div class="operationss-comments">
-                                            <?php if ($_SESSION['user']->role_id != 2): ?>
+                                            <?php if ($_SESSION['user']->role_id != 2 || $comment->user_id == $_SESSION['user']->id): ?>
                                                     <div class="operations-option">
                                                     <form method="POST" action="<?= ROOT ?>/dashboard/deletePost">
                                                         <input type="hidden" name="post_id" value="<?= $post->id ?>">
                                                         <div class="form-element">
-                                                            <button type="submit">
-                                                                <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
-                                                            </button>
+                                                            <div class="form-element-smaller">
+                                                                <button type="submit">
+                                                                    <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </form>
                                                     </div>
@@ -72,9 +74,11 @@
                                                 <form method="POST" action="<?= ROOT ?>/dashboard/deleteComment">
                                                     <input type="hidden" name="comment_id" value="<?= $comment->id ?>">
                                                     <div class="form-element">
-                                                        <button type="submit">
-                                                            <img src="<?= ROOT ?>/assets/images/bin.png" alt="">
-                                                        </button>
+                                                        <div class="form-element-smaller">
+                                                            <button type="submit">
+                                                                <img src="<?= ROOT ?>/assets/images/bin.png" alt="">
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </form>
                                             </div>
