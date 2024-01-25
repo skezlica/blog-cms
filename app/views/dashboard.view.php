@@ -42,6 +42,7 @@
             <div class="content">
                 <h2><?= $post->title; ?></h2>
                 <p><?= $post->content; ?></p>
+                <p class="post-datetime"><?= date('d-m-Y H:i:s', strtotime($post->created_at)) ?></p>
             </div>
             
             <div class="comments">
@@ -51,22 +52,23 @@
                         <?php if ($comment->post_id == $post->id): ?>
                             <div class="comment">
                                 <div class="user"><p><?= $comment->email ?></p></div>
+                                <p><?= $comment->comment ?></p>
                                 <div class="only-comment">
-                                    <p><?= $comment->comment ?></p>
+                                    <p class="comment-datetime"><?= date('d-m-Y H:i:s', strtotime($comment->created_at)) ?></p>
                                     <?php if ($comment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
                                         <div class="operationss-comments">
                                             <?php if ($_SESSION['user']->role_id != 2 || $comment->user_id == $_SESSION['user']->id): ?>
                                                     <div class="operations-option">
-                                                    <form method="POST" action="<?= ROOT ?>/dashboard/deletePost">
-                                                        <input type="hidden" name="post_id" value="<?= $post->id ?>">
-                                                        <div class="form-element">
-                                                            <div class="form-element-smaller">
-                                                                <button type="submit">
-                                                                    <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
-                                                                </button>
+                                                        <form method="POST" action="<?= ROOT ?>/dashboard/deletePost">
+                                                            <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                                                            <div class="form-element">
+                                                                <div class="form-element-smaller">
+                                                                    <button type="submit">
+                                                                        <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
+                                                                    </button>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
+                                                        </form>
                                                     </div>
                                             <?php endif; ?>
 

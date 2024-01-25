@@ -134,6 +134,17 @@
     text-align: justify;
 }
 
+.post .content .post-datetime {
+    font-size: small;
+    text-align: right;
+    font-style: italic;
+}
+
+.comment .comment-datetime {
+    font-size: small;
+    font-style: italic;
+}
+
 .post .comments {
     background-color: rgba(18, 17, 19, 0.7);
     border-radius: 16px;
