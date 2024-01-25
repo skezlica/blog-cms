@@ -2,16 +2,27 @@
 <link rel="stylesheet" href="<?=ROOT?>/assets/css/home.css">
 
 <div class="navbar">
-        <ul>
-            <li><a href="<?=ROOT?>/home">Home</a></li>
-            <?php if (!isset($_SESSION['user'])): ?>
-                <li><a href="<?=ROOT?>/signin">Sign In</a></li>
-            <?php endif; ?>
-            <?php if (isset($_SESSION['user'])): ?>
-                <li><a href="<?=ROOT?>/signout">Sign Out</a></li>
-            <?php endif; ?>
-        </ul>
-    </div>
+    <?php if (isset($_SESSION['user'])): ?>
+    <div class="profile">
+        <img src="<?= ROOT ?>/assets/images/profile.png" alt="">
+        <p><?= $_SESSION['user']->email; ?></p>
+    </div> 
+    <?php endif; ?>   
+
+    <ul>
+        <li><a href="<?=ROOT?>/home">Home</a></li>
+        <?php if (!isset($_SESSION['user'])): ?>
+            <li><a href="<?=ROOT?>/signin">Sign In</a></li>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['user'])): ?>
+            <li><a href="<?=ROOT?>/dashboard">Dashboard</a></li>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['user'])): ?>
+            <li><a href="<?=ROOT?>/signout">Sign Out</a></li>
+        <?php endif; ?>
+    </ul>
+</div>
+
 <div class="container">
     <div class="wrapper">
         <h3>Hi, <?=$username?></h3>
@@ -22,7 +33,7 @@
         <?php if (isset($_SESSION['user'])): ?>
             <a href="<?=ROOT?>/dashboard">GO TO DASHBOARD</a>
         <?php else : ?>
-            <a href="<?=ROOT?>/dashboard">SIGN IN</a>
+            <a href="<?=ROOT?>/signin">SIGN IN</a>
         <?php endif; ?>
     </div>
 </div>

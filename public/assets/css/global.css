@@ -26,3 +26,21 @@ h1 {
     font-size: 80px;
     text-align: center;
 }
+
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile p {
+    color: #E4E6C3;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+}

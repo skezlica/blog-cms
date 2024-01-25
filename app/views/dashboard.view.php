@@ -1,5 +1,21 @@
 <link rel="stylesheet" href="<?=ROOT?>/assets/css/global.css">
 <link rel="stylesheet" href="<?=ROOT?>/assets/css/dashboard.css">
+<link rel="stylesheet" href="<?=ROOT?>/assets/css/home.css">
+ 
+<div class="navbar">
+    <div class="profile">
+        <img src="<?= ROOT ?>/assets/images/profile.png" alt="">
+        <p><?= $_SESSION['user']->email; ?></p>
+    </div>
+    
+    <ul>
+        <li><a href="<?=ROOT?>/home">Home</a></li>
+        <?php if ($_SESSION['user']->role_id == 2): ?>
+            <li><a href="<?=ROOT?>/manageUsers">Manage Users</a></li>
+        <?php endif; ?>
+        <li><a href="<?=ROOT?>/signout">Sign Out</a></li>
+    </ul>
+</div>
 
 <div class="add">
     <a href="<?=ROOT?>/insertPost">ADD NEW POST</a>
@@ -59,8 +75,8 @@
                                         <div class="operationss-comments">
                                             <?php if ($_SESSION['user']->role_id != 2 || $comment->user_id == $_SESSION['user']->id): ?>
                                                     <div class="operations-option">
-                                                        <form method="POST" action="<?= ROOT ?>/dashboard/deletePost">
-                                                            <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                                                        <form method="POST" action="<?= ROOT ?>/dashboard/deleteComment">
+                                                            <input type="hidden" name="comment_id" value="<?= $comment->id ?>">
                                                             <div class="form-element">
                                                                 <div class="form-element-smaller">
                                                                     <button type="submit">

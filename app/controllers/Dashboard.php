@@ -47,11 +47,11 @@ class Dashboard extends Controller {
     public function deleteComment() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment_id'])) {
             $comment = new Comment;
-            $commentId = $_POST['comment_id'];
+            $comment_id = $_POST['comment_id'];
 
-            $existingComment = $comment->first(['id' => $commentId]);
+            $existingComment = $comment->first(['id' => $comment_id]);
             if ($existingComment && ($existingComment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2)) {
-                $comment->delete($commentId);
+                $comment->delete($comment_id);
                 redirect('dashboard');
             }
         }

@@ -65,20 +65,13 @@ class Model extends Database {
     }
 
     public function update($id, $data, $id_column = "id") {
-        if(!empty($this->allowedColumns)) {
-            foreach ($data as $key => $value) {
-                if(!in_array($key, $this->allowedColumns)) {
-                    unset($data[$key]);
-                }
-            }
-        }
         $keys = array_keys($data);
         $query = "update $this->table set ";
         foreach ($keys as $key) {
             $query .= $key . " = :" . $key . ", ";
         }
         $query = trim($query,", ");
-        $query .= " where $id_column = :$id_column";
+        $query .= " where $id_column = :$id_column ";
         $data[$id_column] = $id;
         $this->query($query, $data);
         return false;
@@ -102,6 +95,13 @@ class Model extends Database {
         $query = "SELECT comments.*, users.email FROM comments 
         LEFT JOIN users ON comments.user_id = users.id
         ORDER BY comments.id DESC";
+        return $this->query($query);
+    }
+
+    public function joinUsersRoles() {
+        $query = "SELECT users.*, roles.role_name FROM users 
+        LEFT JOIN roles ON users.role_id = roles.id
+        ORDER BY users.id DESC";
         return $this->query($query);
     }
 }
