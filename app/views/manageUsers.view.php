@@ -3,6 +3,11 @@
 <link rel="stylesheet" href="<?=ROOT?>/assets/css/home.css">
 
 <div class="navbar">
+    <div class="profile">
+        <img src="<?= ROOT ?>/assets/images/profile.png" alt="">
+        <p><?= $_SESSION['user']->email; ?></p>
+    </div>
+
     <ul>
         <li><a href="<?=ROOT?>/home">Home</a></li>
         <li><a href="<?=ROOT?>/dashboard">Dashboard</a></li>
