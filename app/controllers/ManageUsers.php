@@ -39,8 +39,8 @@ class ManageUsers extends Controller {
             $role_id = $_POST['role_id'];
             $data['role_id'] = $role_id;
             $existingUser = $user->first(['id' => $user_id]);
-
-            if ($existingUser && $_SESSION['user']->role_id == 2) {
+            
+            if ($existingUser && $_SESSION['user']->role_id == 2 && $user->validateSetUser($_POST)) {
                 $user->update($user_id, $data);
                 redirect('manageUsers');
             }

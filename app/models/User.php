@@ -28,4 +28,21 @@ class User extends Model {
         }
         return false;
     }
+
+    public function validateSetUser($data) {
+        $this->errors = [];
+
+        if(empty($data['user_id'])) {
+            $this->errors['user_id'] = 'User is required';
+        }
+
+        if(empty($data['role_id'])) {
+            $this->errors['role_id'] = 'Role is required';
+        }
+
+        if(empty($this->errors)) {
+            return true;
+        }
+        return false;
+    }
 }
