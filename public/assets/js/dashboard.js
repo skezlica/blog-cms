@@ -45,36 +45,6 @@ editPosts.forEach(function(editPost) {
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var editComments = document.querySelectorAll('.editComment');
 
 editComments.forEach(function(editComment) {
