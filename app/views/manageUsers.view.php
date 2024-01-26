@@ -7,7 +7,6 @@
         <img src="<?= ROOT ?>/assets/images/profile.png" alt="">
         <p><?= $_SESSION['user']->email; ?></p>
     </div>
-
     <ul>
         <li><a href="<?=ROOT?>/home">Home</a></li>
         <li><a href="<?=ROOT?>/dashboard">Dashboard</a></li>
@@ -47,7 +46,12 @@
 
 <div class="set-user">
     <h2>Set User</h2>
-    <form method="POST" action="<?= ROOT ?>/manageUsers/setUser">
+    <form method="POST">
+        <?php if(!empty($errors)):?>
+            <div class="alert">
+                <?= implode("<br>", $errors) ?>
+            </div>
+        <?php endif; ?>
         <label for="category_id">Select User:</label>
         <select name="user_id" required>
             <option value="0"></option>

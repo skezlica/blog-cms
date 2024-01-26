@@ -60,7 +60,7 @@ h2 {
 .set-user form label {
     font-size: 18px;
     display: block;
-    margin-bottom: 8px;
+    margin: 16px 0;
 }
 
 .set-user form select {

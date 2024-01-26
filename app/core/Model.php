@@ -83,25 +83,21 @@ class Model extends Database {
         $this->query($query, $data);
     }
 
-    public function joinAll() {
-        $query = "SELECT posts.*, users.email, categories.category_name FROM posts 
-        LEFT JOIN users ON posts.user_id = users.id 
-        LEFT JOIN categories ON posts.category_id = categories.id
-        ORDER BY posts.id DESC";
+    public function joinTables($joins, $selectColumns, $orderColumn = null) {
+        $selectQuery = "$this->table.*";
+        foreach ($selectColumns as $table => $columns) {
+            foreach ($columns as $column) {
+                $selectQuery .= ", $table.$column";
+            }
+        }
+        $query = "SELECT $selectQuery FROM $this->table";
+        foreach ($joins as $table => $on) {
+            $query .= " LEFT JOIN $table ON $on";
+        }
+        $orderSql = ($orderColumn !== null) ? "ORDER BY $orderColumn DESC" : '';
+        $query .= " $orderSql";
         return $this->query($query);
     }
-
-    public function joinCommentsUsers() {
-        $query = "SELECT comments.*, users.email FROM comments 
-        LEFT JOIN users ON comments.user_id = users.id
-        ORDER BY comments.id DESC";
-        return $this->query($query);
-    }
-
-    public function joinUsersRoles() {
-        $query = "SELECT users.*, roles.role_name FROM users 
-        LEFT JOIN roles ON users.role_id = roles.id
-        ORDER BY users.id DESC";
-        return $this->query($query);
-    }
+    
+    
 }

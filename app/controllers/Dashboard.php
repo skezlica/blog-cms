@@ -5,10 +5,25 @@ class Dashboard extends Controller {
         $data = [];
 
         $post = new Post;
-        $data['posts'] = $post->joinAll();
+        $joins = [
+            'users' => 'posts.user_id = users.id',
+            'categories' => 'posts.category_id = categories.id'
+        ];
+        $selectColumns = [
+            'users' => ['email'],
+            'categories' => ['category_name']
+        ];
+        $data['posts'] = $post->joinTables($joins, $selectColumns, 'posts.id');
+        
 
         $comment = new Comment;
-        $data['comments'] = $comment->joinCommentsUsers();
+        $joins = [
+            'users' => 'comments.user_id = users.id'
+        ];
+        $selectColumns = [
+            'users' => ['email']
+        ];
+        $data['comments'] = $comment->joinTables($joins, $selectColumns, 'comments.id');
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['comment'] = esc($_POST['comment']);

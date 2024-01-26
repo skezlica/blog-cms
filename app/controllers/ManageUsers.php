@@ -5,10 +5,30 @@ class ManageUsers extends Controller {
         $data = [];
 
         $user = new User;
-        $data['users'] = $user->joinUsersRoles();
-
+        $joins = [
+            'roles' => 'users.role_id = roles.id'
+        ];
+        $selectColumns = [
+            'roles' => ['role_name']
+        ];
+        $data['users'] = $user->joinTables($joins, $selectColumns, 'users.id');
+        
         $role = new Role;
         $data['roles'] = $role->findAll();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $user = new User;
+            $user_id = $_POST['user_id'];
+            $role_id = $_POST['role_id'];
+            $columns['role_id'] = $role_id;
+            
+            if ($_SESSION['user']->role_id == 2 && $user->validateSetUser($_POST)) {
+                $user->update($user_id, $columns);
+                redirect('manageUsers');
+            }
+
+            $data['errors'] = $user->errors;
+        }
 
         if ($_SESSION['user']->role_id == 2) {
             $this->view('manageUsers', $data);
@@ -30,22 +50,5 @@ class ManageUsers extends Controller {
             }
         }
         redirect('manageUsers');
-    }
-
-    public function setUser() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user_id'], $_POST['role_id'])) {
-            $user = new User;
-            $user_id = $_POST['user_id'];
-            $role_id = $_POST['role_id'];
-            $data['role_id'] = $role_id;
-            $existingUser = $user->first(['id' => $user_id]);
-            
-            if ($existingUser && $_SESSION['user']->role_id == 2 && $user->validateSetUser($_POST)) {
-                $user->update($user_id, $data);
-                redirect('manageUsers');
-            }
-            redirect('manageUsers');
-        }
-    }
-    
+    }    
 }
