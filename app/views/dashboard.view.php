@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="<?=ROOT?>/assets/css/global.css">
 <link rel="stylesheet" href="<?=ROOT?>/assets/css/dashboard.css">
 <link rel="stylesheet" href="<?=ROOT?>/assets/css/home.css">
+<script src="<?=ROOT?>/assets/js/dashboard.js" defer></script>
  
 <div class="navbar">
     <div class="profile">
@@ -29,7 +30,7 @@
                     <?php if ($_SESSION['user']->role_id != 2 || $post->user_id == $_SESSION['user']->id): ?>
                         <div class="operations-option">
                             <div class="form-element">
-                                <button>
+                                <button class="editPost" type="button" data-post-id="<?= $post->id ?>">
                                     <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
                                 </button>
                             </div>
@@ -48,9 +49,9 @@
                     </div>
                 </div>
             <?php endif; ?>
-
-            <div class="user"><p><?= $post->email; ?></p></div>
-            <div class="category"><p><?= $post->category_name; ?></p></div>
+                        
+            <div class="user"><h3><?= $post->email; ?></h3></div>
+            <div class="category"><h4><?= $post->category_name; ?></h4></div>
             
             <div class="content">
                 <h2><?= $post->title; ?></h2>
@@ -64,8 +65,8 @@
                     <?php foreach ($data['comments'] as $comment): ?>
                         <?php if ($comment->post_id == $post->id): ?>
                             <div class="comment">
-                                <div class="user"><p><?= $comment->email ?></p></div>
-                                <p><?= $comment->comment ?></p>
+                                <div class="user"><h3><?= $comment->email ?></h3></div>
+                                <p class="comment-content"><?= $comment->comment ?></p>
                                 <div class="only-comment">
                                     <p class="comment-datetime"><?= date('d-m-Y H:i:s', strtotime($comment->created_at)) ?></p>
                                     <?php if ($comment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
@@ -74,14 +75,14 @@
                                                     <div class="operations-option">
                                                         <div class="form-element">
                                                             <div class="form-element-smaller">
-                                                                <button type="submit">
+                                                                <button class="editComment" type="button" data-comment-id="<?= $comment->id ?>">
                                                                     <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
                                                                 </button>
                                                             </div>
                                                         </div>
                                                     </div>
                                             <?php endif; ?>
-
+                                                
                                             <div class="operations-option">
                                                 <form method="POST" action="<?= ROOT ?>/dashboard/deleteComment">
                                                     <input type="hidden" name="comment_id" value="<?= $comment->id ?>">
@@ -100,6 +101,7 @@
                             </div>
                         <?php endif; ?>
                     <?php endforeach; ?>
+                    
 
                     <?php if(!empty($errors)):?>
                         <div class="alert">

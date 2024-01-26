@@ -25,6 +25,9 @@ class Dashboard extends Controller {
         ];
         $data['comments'] = $comment->joinTables($joins, $selectColumns, 'comments.id');
         
+        $category = new Category;
+        $data['categories'] = $category->findAll();
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['comment'] = esc($_POST['comment']);
             
@@ -74,14 +77,32 @@ class Dashboard extends Controller {
     }
 
     public function updatePost() {
-        $post = new Post;
-        $data['posts'] = $_POST;
-        dd($data['posts']);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $post = new Post;
+            $post_id = $_POST['post_id'];
+            $columns['category'] = $_POST['category'];
+            $columns['title'] = $_POST['title'];
+            $columns['content'] = $_POST['content'];
+
+            if($post->validatePost($_POST)) {
+                $post->update($post_id, $columns);
+                redirect('dashboard');
+            }
+            redirect('dashboard');
+        }
     }
 
     public function updateComment() {
-        $comment = new Comment;
-        $data['comments'] = $_POST;
-        dd($data['comments']);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $comment = new Comment;
+            $comment_id = $_POST['comment_id'];
+            $columns['comment'] = esc($_POST['comment']);
+
+            if($comment->validateComment($_POST)) {
+                $comment->update($comment_id, $columns);
+                redirect('dashboard');
+            }
+            redirect('dashboard');
+        }
     }
 }
