@@ -98,6 +98,4 @@ class Model extends Database {
         $query .= " $orderSql";
         return $this->query($query);
     }
-    
-    
 }

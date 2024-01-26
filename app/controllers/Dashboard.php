@@ -72,4 +72,16 @@ class Dashboard extends Controller {
         }
         redirect('dashboard');
     }
+
+    public function updatePost() {
+        $post = new Post;
+        $data['posts'] = $_POST;
+        dd($data['posts']);
+    }
+
+    public function updateComment() {
+        $comment = new Comment;
+        $data['comments'] = $_POST;
+        dd($data['comments']);
+    }
 }

@@ -28,14 +28,11 @@
                 <div class="operations">
                     <?php if ($_SESSION['user']->role_id != 2 || $post->user_id == $_SESSION['user']->id): ?>
                         <div class="operations-option">
-                            <form method="POST" action="<?= ROOT ?>/dashboard/deletePost">
-                                <input type="hidden" name="post_id" value="<?= $post->id ?>">
-                                <div class="form-element">
-                                    <button type="submit">
-                                        <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
-                                    </button>
-                                </div>
-                            </form>
+                            <div class="form-element">
+                                <button>
+                                    <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
+                                </button>
+                            </div>
                         </div>
                     <?php endif; ?>
 
@@ -75,16 +72,13 @@
                                         <div class="operationss-comments">
                                             <?php if ($_SESSION['user']->role_id != 2 || $comment->user_id == $_SESSION['user']->id): ?>
                                                     <div class="operations-option">
-                                                        <form method="POST" action="<?= ROOT ?>/dashboard/deleteComment">
-                                                            <input type="hidden" name="comment_id" value="<?= $comment->id ?>">
-                                                            <div class="form-element">
-                                                                <div class="form-element-smaller">
-                                                                    <button type="submit">
-                                                                        <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
-                                                                    </button>
-                                                                </div>
+                                                        <div class="form-element">
+                                                            <div class="form-element-smaller">
+                                                                <button type="submit">
+                                                                    <img src="<?= ROOT ?>/assets/images/pencil.png" alt="">
+                                                                </button>
                                                             </div>
-                                                        </form>
+                                                        </div>
                                                     </div>
                                             <?php endif; ?>
 
