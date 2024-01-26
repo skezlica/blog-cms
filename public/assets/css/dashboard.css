@@ -27,7 +27,6 @@
     background-color: #E4E6C3;
 }
 
-
 .post {
     position: relative;
     background-color: #222725;
@@ -68,7 +67,6 @@
 .operations-option form .form-element .form-element-smaller button img {
     width: 16px;
 }
-
 
 .post .form-element {
     margin: 16px 0;
@@ -124,7 +122,6 @@
 .operationss-comments {
     display: flex;
 }
-
 
 .post .content h2{
     font-size: 28px;
