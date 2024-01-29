@@ -7,4 +7,8 @@ class Role extends Model {
         'role_name',
     ];
 
+    public const ROLES = [
+        'admin' => 2,
+    ];
+
 }

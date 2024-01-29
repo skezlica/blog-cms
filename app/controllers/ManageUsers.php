@@ -22,7 +22,7 @@ class ManageUsers extends Controller {
             $role_id = $_POST['role_id'];
             $columns['role_id'] = $role_id;
             
-            if ($_SESSION['user']->role_id == 2 && $user->validateSetUser($_POST)) {
+            if ($_SESSION['user']->role_id == Role::ROLES['admin'] && $user->validateSetUser($_POST)) {
                 $user->update($user_id, $columns);
                 redirect('manageUsers');
             }
@@ -30,7 +30,7 @@ class ManageUsers extends Controller {
             $data['errors'] = $user->errors;
         }
 
-        if ($_SESSION['user']->role_id == 2) {
+        if ($_SESSION['user']->role_id == Role::ROLES['admin']) {
             $this->view('manageUsers', $data);
         } else {
             redirect('dashboard');
@@ -44,7 +44,7 @@ class ManageUsers extends Controller {
 
             $existingUser = $user->first(['id' => $user_id]);
 
-            if ($existingUser && $_SESSION['user']->role_id == 2) {
+            if ($existingUser && $_SESSION['user']->role_id == Role::ROLES['admin']) {
                 $user->delete($user_id);
                 redirect('manageUsers');
             }

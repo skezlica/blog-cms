@@ -54,7 +54,7 @@ class Dashboard extends Controller {
             $post_id = $_POST['post_id'];
 
             $existingPost = $post->first(['id' => $post_id]);
-            if ($existingPost && ($existingPost->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2)) {
+            if ($existingPost && ($existingPost->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == Role::ROLES['admin'])) {
                 $post->delete($post_id);
                 redirect('dashboard');
             }
@@ -68,7 +68,7 @@ class Dashboard extends Controller {
             $comment_id = $_POST['comment_id'];
 
             $existingComment = $comment->first(['id' => $comment_id]);
-            if ($existingComment && ($existingComment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2)) {
+            if ($existingComment && ($existingComment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == Role::ROLES['admin'])) {
                 $comment->delete($comment_id);
                 redirect('dashboard');
             }

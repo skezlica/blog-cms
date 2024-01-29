@@ -10,12 +10,14 @@
     <?php endif; ?>   
 
     <ul>
-        <li><a href="<?=ROOT?>/home">Home</a></li>
         <?php if (!isset($_SESSION['user'])): ?>
             <li><a href="<?=ROOT?>/signin">Sign In</a></li>
         <?php endif; ?>
         <?php if (isset($_SESSION['user'])): ?>
             <li><a href="<?=ROOT?>/dashboard">Dashboard</a></li>
+        <?php endif; ?>
+        <?php if (!empty($_SESSION['user']) && $_SESSION['user']->role_id == Role::ROLES['admin']): ?>
+            <li><a href="<?=ROOT?>/manageUsers">Manage Users</a></li>
         <?php endif; ?>
         <?php if (isset($_SESSION['user'])): ?>
             <li><a href="<?=ROOT?>/signout">Sign Out</a></li>

@@ -11,7 +11,7 @@
     
     <ul>
         <li><a href="<?=ROOT?>/home">Home</a></li>
-        <?php if ($_SESSION['user']->role_id == 2): ?>
+        <?php if ($_SESSION['user']->role_id == Role::ROLES['admin']): ?>
             <li><a href="<?=ROOT?>/manageUsers">Manage Users</a></li>
         <?php endif; ?>
         <li><a href="<?=ROOT?>/signout">Sign Out</a></li>
@@ -25,9 +25,9 @@
 <?php if (!empty($data['posts'])): ?>
     <?php foreach ($data['posts'] as $post): ?> 
         <div class="post">
-            <?php if ($post->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
+            <?php if ($post->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == Role::ROLES['admin']): ?>
                 <div class="operations">
-                    <?php if ($_SESSION['user']->role_id != 2 || $post->user_id == $_SESSION['user']->id): ?>
+                    <?php if ($_SESSION['user']->role_id != Role::ROLES['admin'] || $post->user_id == $_SESSION['user']->id): ?>
                         <div class="operations-option">
                             <div class="form-element">
                                 <button class="editPost" type="button" data-post-id="<?= $post->id ?>">
@@ -69,7 +69,7 @@
                                 <p class="comment-content"><?= $comment->comment ?></p>
                                 <div class="only-comment">
                                     <p class="comment-datetime"><?= date('d-m-Y H:i:s', strtotime($comment->created_at)) ?></p>
-                                    <?php if ($comment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == 2): ?>
+                                    <?php if ($comment->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == Role::ROLES['admin']): ?>
                                         <div class="operationss-comments">
                                             <?php if ($_SESSION['user']->role_id != 2 || $comment->user_id == $_SESSION['user']->id): ?>
                                                     <div class="operations-option">
