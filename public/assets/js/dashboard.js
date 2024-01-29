@@ -10,27 +10,20 @@ editPosts.forEach(function(editPost) {
         }
 
         var postId = editPost.getAttribute('data-post-id');
-        console.log(postId);
-    
+        var title = editPost.closest('.post').querySelector('.post-title').innerText;
+        var content = editPost.closest('.post').querySelector('.post-content').innerText;
+
         var formHTML = `
-            <form class="edit-post-form" method="POST">
+            <form class="edit-post-form" method="POST" action="http://localhost/blog-cms/public/dashboard/updatePost">
                 <div class="form-element">
-                    <label for="category_id">Category:</label>
-                    <select class="form-fields" name="category_id" id="category_id" required>
-                        <option value="0"></option>
-                        <?php foreach ($data['categories'] as $category): ?>
-                            <option value="<?php echo $category->id; ?>"><?php echo $category->category_name; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="form-element">
+                    <input type="hidden" name="post_id" value="${postId}">
                     <label for="title">Title:</label>
-                    <input class="form-fields" type="text" name="title" id="title" required>
+                    <input class="form-fields" type="text" name="title" id="title" value="${title}" required>
                 </div>
 
                 <div class="form-element">
                     <label for="content">Content:</label>
-                    <textarea class="form-fields" name="content" cols="30" rows="10" required></textarea>
+                    <textarea class="form-fields" name="content" id="content" cols="30" rows="10" required>${content}</textarea>
                 </div>
 
                 <div class="form-element">
@@ -44,6 +37,7 @@ editPosts.forEach(function(editPost) {
         commentsElement.insertAdjacentHTML('beforebegin', formHTML);
     });
 });
+
 
 var editComments = document.querySelectorAll('.editComment');
 

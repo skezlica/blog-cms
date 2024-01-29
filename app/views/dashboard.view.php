@@ -54,8 +54,8 @@
             <div class="category"><h4><?= $post->category_name; ?></h4></div>
             
             <div class="content">
-                <h2><?= $post->title; ?></h2>
-                <p><?= $post->content; ?></p>
+                <h2 class="post-title"><?= $post->title; ?></h2>
+                <p class="post-content"><?= $post->content; ?></p>
                 <p class="post-datetime"><?= date('d-m-Y H:i:s', strtotime($post->created_at)) ?></p>
             </div>
             

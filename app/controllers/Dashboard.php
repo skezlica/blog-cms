@@ -80,14 +80,9 @@ class Dashboard extends Controller {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $post = new Post;
             $post_id = $_POST['post_id'];
-            $columns['category'] = $_POST['category'];
-            $columns['title'] = $_POST['title'];
-            $columns['content'] = $_POST['content'];
-
-            if($post->validatePost($_POST)) {
-                $post->update($post_id, $columns);
-                redirect('dashboard');
-            }
+            $columns['title'] = esc($_POST['title']);
+            $columns['content'] = esc($_POST['content']);
+            $post->update($post_id, $columns);
             redirect('dashboard');
         }
     }
