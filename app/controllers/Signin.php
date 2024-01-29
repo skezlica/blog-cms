@@ -2,32 +2,35 @@
 
 class Signin extends Controller {
 
+    protected $userRepository;
+    public function __construct() {
+        $this->userRepository = new UserRepository;
+    }
     public function index(){
-        $data = [];
-        
+         $data = [];
+        if(!isset($_SESSION['user'])){    
+            $data['errors'] = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
+            $this->view('signin', $data);
+            unset($_SESSION['errors']);
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function signIn(){
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $user = new User;
-            
             $_POST['email'] = esc($_POST['email']);
             $_POST['password'] = esc($_POST['password']);
-
-            $arr['email'] = $_POST['email'];
-            $row = $user->first($arr);
+            $user_email = $_POST['email'];
+            $row = $this->userRepository->getUserByEmail($user_email);
             if($row){
                 if(password_verify($_POST['password'], $row->password)) {
                     $_SESSION['user'] = $row;
                     redirect('home');
                 }
             }
-            
-            $user->errors['email'] = 'Wrong username or password';
-            $data['errors'] = $user->errors;
+            $_SESSION['errors'] = ['email' => 'Wrong username or password'];
+            redirect('signin');
         }
-        
-        if(!isset($_SESSION['user'])){    
-            $this->view('signin', $data);
-        } else {
-            redirect('home');
-        }
-    }
+    }    
 }

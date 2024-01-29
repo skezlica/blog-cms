@@ -1,6 +1,6 @@
 <?php
 
-class PostRepository {
+class PostRepository extends Validator {
     protected $postModel;
 
     public function __construct() {

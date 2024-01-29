@@ -25,7 +25,9 @@ class InsertPost extends Controller {
             $_POST['title'] = esc($_POST['title']);
             $_POST['content'] = esc($_POST['content']);
             $_POST['user_id'] = $_SESSION['user']->id;
-            $this->postRepository->insertPost($_POST);
+            if($this->postRepository->validatePost($_POST)) {
+                $this->postRepository->insertPost($_POST);
+            }
             redirect('dashboard');
         }
     }

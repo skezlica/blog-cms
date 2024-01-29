@@ -10,7 +10,7 @@
         <?php endif; ?>
 
         <h1>Sign In</h1>
-        <form method="POST">
+        <form method="POST" action="<?= ROOT ?>/signin/signIn">
             <div class="form-element">
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email" required>

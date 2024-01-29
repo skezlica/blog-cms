@@ -10,6 +10,11 @@ spl_autoload_register(function($classname){
     if (file_exists($modelFilename)) {
         require $modelFilename;
     }
+
+    $validatorFilename = "../app/validators/" . ucfirst($classname) . ".php";
+    if (file_exists($validatorFilename)) {
+        require $validatorFilename;
+    }
 });
 
 

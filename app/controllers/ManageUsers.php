@@ -27,7 +27,7 @@ class ManageUsers extends Controller {
             $role_id = $_POST['role_id'];
             $columns['role_id'] = $role_id;
             
-            if ($_SESSION['user']->role_id == Role::ROLES['admin']) {
+            if ($_SESSION['user']->role_id == Role::ROLES['admin'] && $this->userRepository->validateSetUser($_POST)) {
                 $this->userRepository->updateUser($user_id, $columns);
                 redirect('manageUsers');
             }

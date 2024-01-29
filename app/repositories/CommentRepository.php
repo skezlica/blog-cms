@@ -1,6 +1,6 @@
 <?php
 
-class CommentRepository {
+class CommentRepository extends Validator {
     protected $commentModel;
 
     public function __construct() {

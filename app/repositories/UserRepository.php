@@ -1,6 +1,6 @@
 <?php
 
-class UserRepository {
+class UserRepository extends Validator {
     protected $userModel;
 
     public function __construct() {
@@ -23,6 +23,10 @@ class UserRepository {
 
     public function getUserById($user_id) {
         return $this->userModel->first(['id' => $user_id]);
+    }
+
+    public function getUserByEmail($user_email) {
+        return $this->userModel->first(['email' => $user_email]);
     }
 
     public function deleteUser($user_id) {
