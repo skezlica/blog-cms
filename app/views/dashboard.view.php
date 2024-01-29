@@ -110,7 +110,7 @@
                     <?php endif; ?>
                 <?php endif; ?>
 
-                <form method="POST">
+                <form method="POST" action="<?= ROOT ?>/dashboard/insertComment">
                     <div class="form-element">
                         <input type="hidden" name="post_id" value="<?= $post->id ?>">
                         <label for="comment">Comment:</label>

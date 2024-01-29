@@ -8,7 +8,7 @@
             </div>
     <?php endif; ?>
 
-    <form method="POST">
+    <form method="POST" action="<?= ROOT ?>/InsertPost/insertPost">
         <div class="form-element">
             <label for="category_id">Category:</label>
             <select class="form-fields" name="category_id" id="category_id" required>

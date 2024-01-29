@@ -46,7 +46,7 @@
 
 <div class="set-user">
     <h2>Set User</h2>
-    <form method="POST">
+    <form method="POST" action="<?= ROOT ?>/manageUsers/updateUser">
         <?php if(!empty($errors)):?>
             <div class="alert">
                 <?= implode("<br>", $errors) ?>
