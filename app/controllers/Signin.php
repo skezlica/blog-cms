@@ -7,7 +7,8 @@ class Signin extends Controller {
         $this->userRepository = new UserRepository;
     }
     public function index(){
-         $data = [];
+        $data = [];
+        
         if(!isset($_SESSION['user'])){    
             $data['errors'] = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
             $this->view('signin', $data);

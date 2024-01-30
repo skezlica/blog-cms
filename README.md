@@ -96,6 +96,21 @@ ALTER TABLE `posts`
 ALTER TABLE `users`
   ADD CONSTRAINT `users_role_id` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 
+INSERT INTO `roles` (role_name) 
+VALUES 
+  ('user'),
+  ('admin');
+
+INSERT INTO `categories` (category_name)
+VALUES
+  ('Technology'),
+  ('Lifestyle'),
+  ('Science and Education'),
+  ('Art and Culture'),
+  ('Business'),
+  ('Sport'),
+  ('Announcements and Events');
+
 COMMIT;
 --------------------------------------------------
 
