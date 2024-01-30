@@ -37,8 +37,6 @@ class UserRepository extends Validator {
     }
 
     public function updateUser($user_id, $data) {
-        if($this->userModel->validateSetUser($data)) {
-            $this->userModel->update($user_id, $data);
-        }
+        $this->userModel->update($user_id, $data);
     }
 }
