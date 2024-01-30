@@ -18,8 +18,12 @@ class CommentRepository extends Validator {
     } 
 
     public function insertComment($data) {
+        $validator = new Validator;
         if($this->commentModel->validateComment($data)) {
             $this->commentModel->insert($data);
+        } else {
+            $validator->errors = $this->commentModel->errors;
+            $this->errors = $validator->errors;
         }
     }
 

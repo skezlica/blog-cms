@@ -20,8 +20,12 @@ class PostRepository extends Validator {
     }
 
     public function insertPost($data) {
+        $validator = new Validator;
         if($this->postModel->validatePost($data)) {
             $this->postModel->insert($data);
+        } else {
+            $validator->errors = $this->postModel->errors;
+            $this->errors = $validator->errors;
         }
     }
 

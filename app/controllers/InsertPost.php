@@ -20,13 +20,18 @@ class InsertPost extends Controller {
         }
     }
 
-    public function insertPost(){
+    public function insertPost() {
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['title'] = esc($_POST['title']);
             $_POST['content'] = esc($_POST['content']);
             $_POST['user_id'] = $_SESSION['user']->id;
-            $this->postRepository->insertPost($_POST);
-            redirect('dashboard');
+            if(!$this->postRepository->insertPost($_POST)) {
+                $errors = $this->postRepository->errors;
+            } else {
+                redirect('dashboard');
+            }
         }
+        $this->view('insertPost', ['errors' => $errors]);
     }
 }

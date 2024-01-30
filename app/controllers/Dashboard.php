@@ -10,8 +10,10 @@ class Dashboard extends Controller {
         $this->categoryRepository = new CategoryRepository;
     }
 
-    public function index() {
+    public function index($data = []) {
         $data = [];
+        $errors = isset($data['errors']) ? $data['errors'] : [];
+        $data['errors'] = $errors;
         $data['posts'] = $this->postRepository->getAllPosts();
         $data['comments'] = $this->commentRepository->getAllComments();
         $data['categories'] = $this->categoryRepository->getAllCategories();
@@ -24,12 +26,15 @@ class Dashboard extends Controller {
     }
 
     public function insertComment() {
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['comment'] = esc($_POST['comment']);
             $_POST['user_id'] = $_SESSION['user']->id;
-            $this->commentRepository->insertComment($_POST);
-            redirect('dashboard');
+            if(!$this->commentRepository->insertComment($_POST)) {
+                $errors = $this->commentRepository->errors;
+            }
         }
+        $this->index(['errors' => $errors]);
     }
 
     public function deletePost() {
@@ -68,11 +73,14 @@ class Dashboard extends Controller {
     }
 
     public function updateComment() {
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $comment_id = $_POST['comment_id'];
             $data['comment'] = esc($_POST['comment']);
-            $this->commentRepository->updateComment($comment_id, $data);
-            redirect('dashboard');
+            if(!$this->commentRepository->updateComment($comment_id, $data)) {
+                $errors = $this->commentRepository->errors;
+            }
         }
+        $this->index(['errors' => $errors]);
     }
 }

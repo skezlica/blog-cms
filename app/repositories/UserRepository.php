@@ -18,11 +18,16 @@ class UserRepository extends Validator {
     }
 
     public function insertUser($data) {
+        $validator = new Validator;
         if($this->userModel->validateSignup($data)) {
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
             $this->userModel->insert($data);
+        } else {
+            $validator->errors = $this->userModel->errors;
+            $this->errors = $validator->errors;
         }
     }
+    
 
     public function getUserById($user_id) {
         return $this->userModel->first(['id' => $user_id]);
