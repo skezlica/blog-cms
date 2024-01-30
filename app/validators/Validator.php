@@ -1,13 +1,6 @@
 <?php
 
-class User extends Model {
-
-    protected $table = 'users';
-    protected $allowedColumns = [
-        'email',
-        'password',
-    ];
-
+class Validator extends Model{
     public function validateSignup($data) {
         $this->errors = [];
 
@@ -38,6 +31,40 @@ class User extends Model {
 
         if(empty($data['role_id'])) {
             $this->errors['role_id'] = 'Role is required';
+        }
+
+        if(empty($this->errors)) {
+            return true;
+        }
+        return false;
+    }
+
+    public function validatePost($data) {
+        $this->errors = [];
+
+        if(empty($data['title'])) {
+            $this->errors['title'] = 'Title is required';
+        }
+
+        if(empty($data['content'])) {
+            $this->errors['content'] = 'Content is required';
+        }
+
+        if(empty($data['category_id']) || $data['category_id'] == 0) {
+            $this->errors['category_id'] = 'Category is required';
+        }
+
+        if(empty($this->errors)) {
+            return true;
+        }
+        return false;
+    }
+
+    public function validateComment($data) {
+        $this->errors = [];
+
+        if(empty($data['comment'])) {
+            $this->errors['comment'] = 'Comment is required';
         }
 
         if(empty($this->errors)) {

@@ -1,0 +1,46 @@
+body {
+    background: rgb(18,17,19);
+    background: linear-gradient(135deg, rgba(18,17,19,1) 0%, rgba(34,39,37,1) 100%);
+    color: #F7F7F2;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.alert {
+    text-align: center;
+    background-color: rgba(63, 0, 0, 0.3);
+    color: #E4E6C3;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    border-bottom: 1px solid #E4E6C3;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 80px;
+    text-align: center;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile p {
+    color: #E4E6C3;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+}

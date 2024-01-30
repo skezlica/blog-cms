@@ -1,9 +1,9 @@
 <?php
 
-class Home {
-    use Controller;
-
+class Home extends Controller {
     public function index(){
-        $this->view('home');
+        $data['username'] = empty($_SESSION['user']) ? 'User' : $_SESSION['user']->email;
+        
+        $this->view('home', $data);
     }
 }

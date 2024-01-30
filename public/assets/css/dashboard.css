@@ -1,0 +1,168 @@
+.add {
+    text-align: center;
+    margin-top: 32px;
+}
+
+.add a {
+    background-color: #899878;
+    border-color: #121113;
+    color: #121113;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.add a:hover {
+    background-color: #E4E6C3;
+}
+
+.post .form-element {
+    margin: 16px 0;
+}
+
+.post .form-element label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.post .form-element .form-fields {
+    background-color: rgba(228, 230, 195, 0.9);
+    border-color: #121113;
+    color: #121113;
+    border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+}
+
+.post .form-element button {
+    background-color: #899878;
+    border-color: #121113;
+    color: #121113;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: 0.3s;
+}
+
+.post .form-element button:hover {
+    background-color: #E4E6C3;
+}
+
+.post {
+    position: relative;
+    background-color: #222725;
+    padding: 16px;
+    max-width: 1000px;
+    margin: 32px auto;
+    border-radius: 8px;
+    border: 1px solid #E4E6C3;
+}
+
+.operations {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.post .operations .operations-option .form-element button{
+    border: transparent;
+    background-color: transparent;
+    transition: 0.3s;
+}
+
+.post .operations .operations-option .form-element button:hover {
+    border: 1px solid #E4E6C3;
+    background-color: transparent;
+}
+
+.post .operations .operations-option .form-element button img {
+    width: 24px;
+}
+
+.post .user {
+    color: #899878;
+    font-size: 16px;
+}
+
+.post .category {
+    color: #899878;
+    font-size: 16px;
+}
+
+.post .content h2{
+    font-size: 28px;
+}
+
+.post .content p{
+    font-size: 24;
+    text-align: justify;
+}
+
+.post .content .post-datetime {
+    font-size: small;
+    text-align: right;
+    font-style: italic;
+}
+
+.only-comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -16px;
+}
+
+.operationss-comments {
+    display: flex;
+}
+
+.comment .comment-datetime {
+    font-size: small;
+    font-style: italic;
+}
+
+.post .comments {
+    background-color: rgba(18, 17, 19, 0.7);
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.post .comments .comment {
+    border-bottom: 1px solid #E4E6C3;
+}
+
+.operations-option .form-element .form-element-smaller button img {
+    width: 16px;
+}
+
+.operations-option .form-element .form-element-smaller button{
+    border: transparent;
+    background-color: transparent;
+    transition: 0.3s;
+}
+
+.operations-option .form-element .form-element-smaller button:hover {
+    border: 1px solid #E4E6C3;
+    background-color: transparent;
+}
+
+.operations-option .form-element .form-element-smaller button img {
+    width: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

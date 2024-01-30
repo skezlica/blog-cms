@@ -1,8 +1,22 @@
 <?php
 
-spl_autoload_register(function($classname){
-    require $filename = "../app/models/" . ucfirst($classname) . ".php";
+spl_autoload_register(function($classname){ 
+    $repositoryFilename = "../app/repositories/" . ucfirst($classname) . ".php";
+    if (file_exists($repositoryFilename)) {
+        require $repositoryFilename;
+    }
+
+    $modelFilename = "../app/models/" . ucfirst($classname) . ".php";
+    if (file_exists($modelFilename)) {
+        require $modelFilename;
+    }
+
+    $validatorFilename = "../app/validators/" . ucfirst($classname) . ".php";
+    if (file_exists($validatorFilename)) {
+        require $validatorFilename;
+    }
 });
+
 
 require 'config.php';
 require 'functions.php';

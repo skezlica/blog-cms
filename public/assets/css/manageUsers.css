@@ -1,0 +1,90 @@
+h2 {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.users-table {
+    text-align: center;
+    margin: 64px;
+}
+
+.users-table table {
+    font-size: 18px;
+    border: 1px solid #E4E6C3;
+    background-color: #121113;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.users-table table tr {
+    border: 1px solid #E4E6C3;
+}
+
+.users-table table tr td {
+    text-align: center;
+    padding: 8px;
+    color: #E4E6C3;
+    justify-content: center;
+    border: 1px solid #E4E6C3;
+    
+}
+
+.users-table table tr td form button {
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.users-table table tr td form button img{
+    width: 18px;
+}
+
+.users-table table tr td form {
+    margin: 0 auto;
+}
+
+.set-user {
+    text-align: center;
+    margin: 64px;
+}
+
+.set-user form {
+    background-color: #121113;
+    border: 1px solid #E4E6C3;
+    padding: 32px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.set-user form label {
+    font-size: 18px;
+    display: block;
+    margin: 16px 0;
+}
+
+.set-user form select {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+    font-size: 18px;
+    background-color: #E4E6C3;
+    border-radius: 8px;
+}
+
+.set-user form button {
+    background-color: #899878;
+    border-color: #121113;
+    color: #121113;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: 0.3s;
+}
+
+.set-user form button:hover {
+    background-color: #E4E6C3;
+}

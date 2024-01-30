@@ -7,5 +7,17 @@ function show($stuff) {
 }
 
 function esc($str) {
-    return htmlspecialchars($str);
+    $str = trim($str);
+    $str = stripslashes($str);
+    $str = htmlspecialchars($str);
+    return $str;
 }
+
+function redirect($path) {
+    header("location: " . ROOT . "/" . $path);
+    die();
+}
+
+function dd($stuff) {
+    die(print_r($stuff));
+} 

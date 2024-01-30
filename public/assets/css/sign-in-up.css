@@ -1,0 +1,59 @@
+.container .wrapper {
+    max-width: 800px;
+    border-radius: 8px;
+    padding: 48px;
+    border: 1px solid #E4E6C3;
+    background-color: #121113;
+    -webkit-box-shadow: 0px 5px 20px 0px rgba(228,230,195,0.5);
+    -moz-box-shadow: 0px 5px 20px 0px rgba(228,230,195,0.5);
+    box-shadow: 0px 5px 20px 0px rgba(228,230,195,0.5);
+}
+
+.container .wrapper .form-element {
+    margin-bottom: 16px;
+}
+
+.container .wrapper form .form-element label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.container .wrapper form .form-element input {
+    font-size: 18px;
+    background-color: #E4E6C3;
+    border-color: #121113;
+    color: #121113;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.container .wrapper form .form-element button {
+    text-decoration: none;
+    font-weight: bold;
+    color: #E4E6C3;
+    background-color: #121113;
+    border: 1px solid #E4E6C3;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: 0.3s;
+    font-size: 18px;
+}
+
+.container .wrapper form .form-element button:hover {
+    color: #121113;
+    background-color: #E4E6C3;
+    -webkit-box-shadow: 0px 5px 20px 0px rgba(228,230,195,0.5);
+    -moz-box-shadow: 0px 5px 20px 0px rgba(228,230,195,0.5);
+    box-shadow: 0px 5px 20px 0px rgba(228,230,195,0.5);
+}
+
+.container .wrapper form .form-element p {
+    font-size: 18px;
+}
+
+.container .wrapper form .form-element p a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #E4E6C3;
+}
