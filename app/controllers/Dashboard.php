@@ -27,9 +27,7 @@ class Dashboard extends Controller {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['comment'] = esc($_POST['comment']);
             $_POST['user_id'] = $_SESSION['user']->id;
-            if($this->commentRepository->validateComment($_POST)) {
-                $this->commentRepository->insertComment($_POST);
-            }
+            $this->commentRepository->insertComment($_POST);
             redirect('dashboard');
         }
     }
@@ -38,7 +36,6 @@ class Dashboard extends Controller {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_id'])) {
             $post_id = $_POST['post_id'];
             $post = $this->postRepository->getPostById($post_id);
-
             if ($post && ($post->user_id == $_SESSION['user']->id || $_SESSION['user']->role_id == Role::ROLES['admin'])) {
                 $this->postRepository->deletePost($post_id);
                 redirect('dashboard');
@@ -74,9 +71,7 @@ class Dashboard extends Controller {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $comment_id = $_POST['comment_id'];
             $data['comment'] = esc($_POST['comment']);
-            if($this->commentRepository->validateComment($_POST)) {
-                $this->commentRepository->updateComment($comment_id, $data);
-            }
+            $this->commentRepository->updateComment($comment_id, $data);
             redirect('dashboard');
         }
     }

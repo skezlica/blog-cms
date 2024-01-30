@@ -18,7 +18,9 @@ class CommentRepository extends Validator {
     } 
 
     public function insertComment($data) {
-        $this->commentModel->insert($data);
+        if($this->commentModel->validateComment($data)) {
+            $this->commentModel->insert($data);
+        }
     }
 
     public function getCommentById($comment_id) {
@@ -30,6 +32,8 @@ class CommentRepository extends Validator {
     }
 
     public function updateComment($comment_id, $data) {
-        $this->commentModel->update($comment_id, $data);
+        if($this->commentModel->validateComment($data)) {
+            $this->commentModel->update($comment_id, $data);
+        }
     }
 }

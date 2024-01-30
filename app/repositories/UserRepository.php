@@ -18,7 +18,10 @@ class UserRepository extends Validator {
     }
 
     public function insertUser($data) {
-        $this->userModel->insert($data);
+        if($this->userModel->validateSignup($data)) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            $this->userModel->insert($data);
+        }
     }
 
     public function getUserById($user_id) {
@@ -34,6 +37,8 @@ class UserRepository extends Validator {
     }
 
     public function updateUser($user_id, $data) {
-        $this->userModel->update($user_id, $data);
+        if($this->userModel->validateSetUser($data)) {
+            $this->userModel->update($user_id, $data);
+        }
     }
 }

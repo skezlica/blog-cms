@@ -26,8 +26,7 @@ class ManageUsers extends Controller {
             $user_id = $_POST['user_id'];
             $role_id = $_POST['role_id'];
             $columns['role_id'] = $role_id;
-            
-            if ($_SESSION['user']->role_id == Role::ROLES['admin'] && $this->userRepository->validateSetUser($_POST)) {
+            if ($_SESSION['user']->role_id == Role::ROLES['admin']) {
                 $this->userRepository->updateUser($user_id, $columns);
                 redirect('manageUsers');
             }
@@ -37,9 +36,7 @@ class ManageUsers extends Controller {
     public function deleteUser() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['user_id'])) {
             $user_id = $_POST['user_id'];
-
             $existingUser = $this->userRepository->getUserById($user_id);
-
             if ($existingUser && $_SESSION['user']->role_id == Role::ROLES['admin']) {
                 $this->userRepository->deleteUser($user_id);
                 redirect('manageUsers');

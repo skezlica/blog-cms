@@ -20,7 +20,9 @@ class PostRepository extends Validator {
     }
 
     public function insertPost($data) {
-        $this->postModel->insert($data);
+        if($this->postModel->validatePost($data)) {
+            $this->postModel->insert($data);
+        }
     }
 
     public function getPostById($post_id) {
